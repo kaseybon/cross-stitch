@@ -1,0 +1,9 @@
+{% extends "index.twig" %}
+
+{% block posts_found %}
+  {% for post in posts %}
+    {% include 'partials/content-search.twig' with {post: post} %}
+  {% endfor %}
+
+  {% include 'partials/pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 2, end_size: 1})} %}
+{% endblock %}

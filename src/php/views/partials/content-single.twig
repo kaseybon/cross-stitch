@@ -1,0 +1,21 @@
+<article id="post-{{ post.id }}" class="post-preview">
+	{% if post.thumbnail %}
+		<img
+			src="{{ post.thumbnail.src('thumbnail') }}"
+			class="post-preview__featured-image"
+			{% if post.thumbnail.alt and post.thumbnail.alt|length > 0 %}
+				alt="{{ post.thumbnail.alt }}"
+			{% else %}
+				alt=""
+			{% endif %}
+		/>
+	{% endif %}
+	<div>
+		<h2 class="post-preview__title">
+			{{ post.title }}
+		</h2>
+		<div>
+			{{ post.preview }}
+		</div>
+	</div>
+</article>

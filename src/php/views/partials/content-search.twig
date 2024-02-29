@@ -1,0 +1,8 @@
+<article id="post-{{ post.id }}">
+	<h2>
+		<a href="{{ post.link }}">{{ post.title }}</a>
+	</h2>
+	<div>
+		{{ post.preview ? post.preview : post.content }}
+	</div>
+</article>

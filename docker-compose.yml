@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    container_name: sparkpress
+    ports:
+      - '8000:80'
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./uploads:/var/www/html/wp-content/uploads
+      - ./theme:/var/www/html/wp-content/themes/sparkpress-theme
+      - ./wp-configs/wp-config.php:/var/www/html/wp-config.php
+      - ./wp-configs/php.ini:/var/www/html/php.ini
+      - ./.env:/var/www/html/.env
+      - ./wp-configs/.htaccess:/var/www/html/.htaccess
+  db:
+    image: mysql:8.1
+    container_name: sparkpress_db
+    restart: always
+    ports:
+      - '3309:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file:
+      - .env
+volumes:
+  db_data: {}
